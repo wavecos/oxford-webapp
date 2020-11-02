@@ -9,13 +9,20 @@ class OxfordController < ApplicationController
   private
   def search_term(term)
     url = "https://od-api.oxforddictionaries.com/api/v2/entries/en-us/#{term.downcase}"
-    response = Excon.get(
-      url,
-      headers: {
-        'app_id' => Rails.application.credentials.app_id,
-        'app_key' => Rails.application.credentials.app_key
-      }
-    )
+
+    begin
+      response = Excon.get(
+        url,
+        headers: {
+          'app_id' => Rails.application.credentials.app_id, # See README.md file for instructions
+          'app_key' => Rails.application.credentials.app_key
+        }
+      )
+    rescue StandardError => e
+      flash[:alert] = e.message
+      return render action: :index
+    end
+
     if response.status != 200
       begin
         errorMsg = JSON.parse(response.body)['error'] # Check if the error is JSON obj

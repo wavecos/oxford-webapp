@@ -1,24 +1,27 @@
-# README
+# README - Oxford Webapp
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Setup
 
-Things you may want to cover:
+Need to obtain Oxford APP_ID and APP_KEY from this url:
 
-* Ruby version
+https://developer.oxforddictionaries.com/
 
-* System dependencies
+With the APP_ID and APP_KEY need to use Rails secrets and register the keys:
 
-* Configuration
+```
+EDITOR=nano rails credentials:edit
+```
 
-* Database creation
+If you get this message:
 
-* Database initialization
+"Couldn't decrypt config/credentials.yml.enc. Perhaps you passed the wrong key?"
 
-* How to run the test suite
+You need to remove: config/credentials.yml.enc file and trye again:
 
-* Services (job queues, cache servers, search engines, etc.)
+Basically you need to add at the end of file:
 
-* Deployment instructions
+```
+app_id: XXXXXXXXXX
+app_key: YYYYYYYYYY
+```
 
-* ...
