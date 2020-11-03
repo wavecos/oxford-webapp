@@ -19,3 +19,35 @@
   </div>
 </div>
 <% end %>
+
+
+<div class="columns is-mobile">
+  <div class="column is-offset-one-quarter">
+    <h5 class="subtitle is-5">Last terms searched:</h5>
+
+    <div class="tags" id="last_terms">
+    </div>
+  </div>
+</div>
+
+
+<script>
+  const savedSearches = document.getElementById('last_terms');
+
+  let itemsArray = localStorage.getItem('items') ? JSON.parse(localStorage.getItem('items')) : [];
+
+  localStorage.setItem('items', JSON.stringify(itemsArray));
+  const data = JSON.parse(localStorage.getItem('items'));
+
+  const spanMaker = (text) => {
+    const spanTerm = document.createElement('span');
+    spanTerm.className = 'tag';
+    spanTerm.textContent = text;
+    savedSearches.appendChild(spanTerm);
+  }
+
+  data.forEach(item => {
+    spanMaker(item);
+  });
+
+</script>

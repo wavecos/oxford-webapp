@@ -1,3 +1,15 @@
+<script>
+    let itemsArray = localStorage.getItem('items') ? JSON.parse(localStorage.getItem('items')) : [];
+    localStorage.setItem('items', JSON.stringify(itemsArray));
+
+    if (itemsArray && itemsArray.length === 5) {
+        itemsArray.shift();
+    } 
+
+    itemsArray.push("<%= @word %>");
+    localStorage.setItem('items', JSON.stringify(itemsArray));
+</script>
+  
 <div class="columns">
     <div class="column is-half is-offset-one-quarter">
         <div class="card">

@@ -39,6 +39,6 @@ class OxfordController < ApplicationController
       @provider = resp['metadata']['provider']
       @audio_url = resp['results'][0]['lexicalEntries'][0]['entries'][0]['pronunciations'][1]['audioFile']
     end
-
   end
+
 end
